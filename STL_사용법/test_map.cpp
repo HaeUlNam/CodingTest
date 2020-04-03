@@ -77,7 +77,8 @@ int main(){
     for(auto aa : m){
         cout << aa.first << " " << aa.second << "\n";
     }
-
+    
+    //출처: https://blockdmask.tistory.com/364
     map<info, int> im;
 
     im.insert(make_pair(info(1,2),2));
@@ -88,6 +89,6 @@ int main(){
     for(auto bb: im){
         cout << bb.first.idx << "/" << bb.first.count << "/" << bb.second << "\n";
     }
-
+    
     return 0;
 }
