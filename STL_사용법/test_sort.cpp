@@ -46,10 +46,17 @@ int main(){
 
     vector<info> vec = {{2,2}, {1,2}, {2,1}, {3,3}, {3,1}};
 
+    //첫번째 요소 오름차순, 그 다음 같다면 두번쨰 요소 오름차순
     sort(vec.begin(), vec.end(), cmp);
 
-    for(int i = 0; i < vec.size(); ++i)
-        cout << vec[i].idx << "/" << vec[i].count << "\n";
+
+    vector<int> v1 = {9,8,7,6,5,4,3,2,1};
+
+    //오름차순! 결과: 1 2 3 4 5 6 7 8 9
+    sort(v1.begin(), v1.end());
+
+    //내림차순! 결과: 9 8 7 6 5 4 3 2 1 
+    sort(v1.begin(), v1.end(), greater<int>());
 
     return 0;
 }
