@@ -12,12 +12,13 @@
 #include<unordered_set>
 #include<vector>
 #include<cstdio>
+#include<cmath>
 using namespace std;
 
 #define INIT_MAX -987654321
 #define INIT_MIN 987654321
 
-int init(vector<int> &a, vector<int> &tree, int node, int start, int end) {
+long long init(vector<long long> &a, vector<long long> &tree, int node, int start, int end) {
     if (start == end) {
         return tree[node] = a[start];
     } else {
@@ -25,7 +26,7 @@ int init(vector<int> &a, vector<int> &tree, int node, int start, int end) {
     }
 }
 
-void update(vector<int> &tree, int node, int start, int end, int index, int num) {
+void update(vector<long long> &tree, int node, int start, int end, int index, long long num) {
     if (index < start || index > end) return;
     tree[node] = max(tree[node], num);
     if (start != end) {
@@ -34,7 +35,7 @@ void update(vector<int> &tree, int node, int start, int end, int index, int num)
     }
 }
 
-int maximum(vector<int> &tree, int node, int start, int end, int left, int right) {
+long long maximum(vector<long long> &tree, int node, int start, int end, int left, int right) {
     if (left > end || right < start) {
         return 0;
     }
@@ -44,37 +45,29 @@ int maximum(vector<int> &tree, int node, int start, int end, int left, int right
     return max(maximum(tree, node*2, start, (start+end)/2, left, right), maximum(tree, node*2+1, (start+end)/2+1, end, left, right));
 }
 
-//stones이 원 데이터
-int solution(vector<int> stones, int k) {
-    //Max 세그먼트 트리 만들기
-    int h = (int)ceil(log2(stones.size()));
-    int tree_size = (1 << (h+1));
-    vector<int> tree(tree_size);
-
-    //세그먼트 init
-    init(stones, tree, 1, 0, stones.size() - 1);
-
-    //세그먼트 update
-    update(tree, 1, 0, stones.size() - 1, 1, 15);
-
-    int ssize = k - 1;
-    int mmin = INIT_MIN;
-    
-    //3개씩 max 구간쿼리
-    for(int i = 0; i <= stones.size() - k; ++i){
-        mmin = min(mmin, maximum(tree, 1, 0, stones.size() - 1, i, i + ssize));
-    }
-
-    return mmin;
-}
-
 int main(){
     ios_base::sync_with_stdio(false);
     freopen("input.txt", "r",stdin);
     freopen("output.txt","w",stdout);
 
-    vector<int> stones = {2, 4, 5, 3, 2, 1, 4, 2, 5, 1};
-    cout << solution(stones, 3);   
+    vector<long long> input = {2, 4, 5, 3, 2, 1, 4, 2, 5, 1};
 
+    //Max 세그먼트 트리 만들기
+    int h = (int)ceil(log2(input.size()));
+    int tree_size = (1 << (h+1));
+    vector<long long> tree(tree_size);
+
+    //세그먼트 init
+    init(input, tree, 1, 0, input.size() - 1);
+
+    //세그먼트 update
+    update(tree, 1, 0, input.size() - 1, 1, 15);
+
+    //세그먼트 sum
+    cout << maximum(tree, 1, 0, input.size() - 1, 0, 2) << "\n";
+    cout << maximum(tree, 1, 0, input.size() - 1, 1, 3) << "\n";
+    cout << maximum(tree, 1, 0, input.size() - 1, 2, 4) << "\n";
+
+    //출처: 
     return 0;
 }
