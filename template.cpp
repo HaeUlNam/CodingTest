@@ -12,6 +12,7 @@
 #include<unordered_set>
 #include<vector>
 #include<cstdio>
+#include<cmath>
 using namespace std;
 
 /* 아래 주석한 것 중 문제 풀이 때, 사용될 수 있는 것은 주석해제를 하고 아니면 삭제.*/
