@@ -28,6 +28,7 @@ using namespace std;
 // int dr[] = {0,0,1,-1,1,1,-1,-1};
 // int dc[] = {1,-1,0,0,-1,1,-1,1};
 
+//디버깅 시 assert함수 사용
 
 int main(){
     ios_base::sync_with_stdio(false);
