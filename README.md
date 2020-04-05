@@ -1,2 +1,2 @@
 # CodingTest
-기업에서 진행하는 코딩테스트를 준비하기 위해 만들었습니다..
+for codingtest and competition
