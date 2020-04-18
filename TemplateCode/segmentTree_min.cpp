@@ -56,7 +56,7 @@ int main(){
 
     vector<long long> input = {2, 4, 5, 3, 2, 1, 4, 2, 5, 1};
 
-    //Max 세그먼트 트리 만들기
+    //Min 세그먼트 트리 만들기
     int h = (int)ceil(log2(input.size()));
     int tree_size = (1 << (h+1));
     vector<long long> tree(tree_size);
@@ -67,7 +67,7 @@ int main(){
     //세그먼트 update
     update(tree, 1, 0, input.size() - 1, 1, 15);
 
-    //세그먼트 sum
+    //쿼리
     cout << minimum(tree, 1, 0, input.size() - 1, 0, 2) << "\n";
     cout << minimum(tree, 1, 0, input.size() - 1, 1, 3) << "\n";
     cout << minimum(tree, 1, 0, input.size() - 1, 2, 4) << "\n";
