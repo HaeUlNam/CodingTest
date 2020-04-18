@@ -22,27 +22,31 @@ long long init(vector<long long> &a, vector<long long> &tree, int node, int star
     if (start == end) {
         return tree[node] = a[start];
     } else {
-        return tree[node] = max(init(a, tree, node*2, start, (start+end)/2),init(a, tree, node*2+1, (start+end)/2+1, end));
+        return tree[node] = min(init(a, tree, node*2, start, (start+end)/2),init(a, tree, node*2+1, (start+end)/2+1, end));
     }
 }
 
-void update(vector<long long> &tree, int node, int start, int end, int index, long long num) {
-    if (index < start || index > end) return;
-    tree[node] = max(tree[node], num);
-    if (start != end) {
-        update(tree,node*2, start, (start+end)/2, index, num);
-        update(tree,node*2+1, (start+end)/2+1, end, index, num);
+long long update(vector<long long> &tree, int node, int start, int end, int index, long long num) {
+    if (index < start || index > end) return tree[node];
+    if (start == end){
+        return tree[node] = num;
     }
+    
+    int left = update(tree,node*2, start, (start+end)/2, index, num);
+    int right = update(tree,node*2+1, (start+end)/2+1, end, index, num);
+
+    return tree[node] = min(left, right);
 }
 
-long long maximum(vector<long long> &tree, int node, int start, int end, int left, int right) {
+long long minimum(vector<long long> &tree, int node, int start, int end, int left, int right) {
     if (left > end || right < start) {
-        return 0;
+        return 0x7f7f7f7f;
     }
     if (left <= start && end <= right) {
         return tree[node];
     }
-    return max(maximum(tree, node*2, start, (start+end)/2, left, right), maximum(tree, node*2+1, (start+end)/2+1, end, left, right));
+
+    return min(minimum(tree, node*2, start, (start+end)/2, left, right), minimum(tree, node*2+1, (start+end)/2+1, end, left, right));
 }
 
 int main(){
@@ -64,9 +68,9 @@ int main(){
     update(tree, 1, 0, input.size() - 1, 1, 15);
 
     //세그먼트 sum
-    cout << maximum(tree, 1, 0, input.size() - 1, 0, 2) << "\n";
-    cout << maximum(tree, 1, 0, input.size() - 1, 1, 3) << "\n";
-    cout << maximum(tree, 1, 0, input.size() - 1, 2, 4) << "\n";
+    cout << minimum(tree, 1, 0, input.size() - 1, 0, 2) << "\n";
+    cout << minimum(tree, 1, 0, input.size() - 1, 1, 3) << "\n";
+    cout << minimum(tree, 1, 0, input.size() - 1, 2, 4) << "\n";
 
     //출처: 
     return 0;
