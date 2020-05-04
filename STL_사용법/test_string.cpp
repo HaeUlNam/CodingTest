@@ -56,5 +56,21 @@ int main(){
     출처: https://makerj.tistory.com/127
     */
     
+    /*
+    remove의 역할: '{'에 해당하는 문자를 모두 string 맨 뒤로 보내버린다.
+    erase의 역할: 
+    cur.erase(remove(cur.begin(), cur.end(), '{'), cur.end());
+    
+    출처: https://modoocode.com/266
+    */
+
+    /*
+    string to integer
+    c_str()
+    atoi()
+    
+    출처: https://blockdmask.tistory.com/39
+    */
+    
     return 0;
 }
