@@ -1,3 +1,5 @@
+```java
+
 import java.util.*;
 
 public class helloworld {
@@ -15,3 +17,4 @@ public class helloworld {
         a.getLast();
     }
 }
+```
