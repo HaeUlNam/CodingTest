@@ -52,3 +52,8 @@ public class helloworld {
 }
 
 ```
+
+### 참고자료
+- [우선순위 큐(Priority Queue)](https://cjh5414.github.io/priorityqueue/)
+- [Java Queue, Priority Queue 예제](https://gamjatwigim.tistory.com/72)
+
