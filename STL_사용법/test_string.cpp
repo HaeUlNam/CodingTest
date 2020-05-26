@@ -63,6 +63,13 @@ int main(){
     
     출처: https://modoocode.com/266
     */
+    
+    // string aaa = "[aaa]1000,[bbb]2000,[ccc]3000,[ddd]";
+
+    //[] 삭제(간편)
+    // aaa.erase(remove(aaa.begin(), aaa.end(), ']'), aaa.end());
+    // aaa.erase(remove(aaa.begin(), aaa.end(), '['), aaa.end());
+    // cout << aaa << "\n";
 
     /*
     string to integer
